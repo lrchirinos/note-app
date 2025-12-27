@@ -1,0 +1,100 @@
+<div class="container vh-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-lg-8 p-0 card shadow-lg" style="border-radius: 1rem;">
+      <div class="row g-0">
+
+        <div class="col-md-6">
+          <div class="card-body p-5">
+
+            <div *ngIf="isLoginMode">
+              <h2 class="fw-bold mb-4">Sign In</h2>
+
+              <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                <div class="mb-3">
+                  <label for="login-username" class="form-label">USERNAME</label>
+                  <input 
+                    type="text" 
+                    id="login-username" 
+                    class="form-control form-control-lg" 
+                    formControlName="username"
+                    placeholder="Enter your username" >
+                </div>
+                <div class="mb-4">
+                  <label for="login-password" class="form-label">PASSWORD</label>
+                  <input 
+                    type="password" 
+                    id="login-password" 
+                    class="form-control form-control-lg" 
+                    formControlName="password"
+                    placeholder="Enter your password" >
+                </div>
+
+                <button class="btn btn-primary btn-lg w-100" type="submit" [disabled]="loginForm.invalid">
+                  Sign In
+                </button>
+              </form>
+            </div>
+
+            <div *ngIf="!isLoginMode">
+              <h2 class="fw-bold mb-4">Create Account</h2>
+              <p class="text-muted mb-4">Let's get you started!</p>
+
+              <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+                <div class="mb-3">
+                  <label for="signup-username" class="form-label">USERNAME</label>
+                  <input 
+                    type="text" 
+                    id="signup-username" 
+                    class="form-control form-control-lg" 
+                    formControlName="username"
+                    placeholder="Choose a username" >
+                  <div class="form-text">Must be at least 4 characters.</div>
+                </div>
+                <div class="mb-4">
+                  <label for="signup-password" class="form-label">PASSWORD</label>
+                  <input 
+                    type="password" 
+                    id="signup-password" 
+                    class="form-control form-control-lg" 
+                    formControlName="password"
+                    placeholder="Choose a password" >
+                  <div class="form-text">Must be at least 8 characters.</div>
+                </div>
+                <button class="btn btn-primary btn-lg w-100" type="submit" [disabled]="signupForm.invalid">
+                  Sign Up
+                </button>
+              </form>
+            </div>
+            
+            <div *ngIf="errorMessage" class="alert alert-danger mt-4">
+              {{ errorMessage }}
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center bg-primary bg-gradient text-white" style="border-radius: 0 1rem 1rem 0;">
+          <div class="text-center p-5">
+
+            <div *ngIf="isLoginMode">
+              <h2 class="fw-bold">Welcome to login</h2>
+              <p class="mb-4">Don't have an account?</p>
+              <button (click)="toggleMode()" class="btn btn-outline-light btn-lg">
+                Sign Up
+              </button>
+            </div>
+            
+            <div *ngIf="!isLoginMode">
+              <h2 class="fw-bold">Welcome Back!</h2>
+              <p class="mb-4">Already have an account?</p>
+              <button (click)="toggleMode()" class="btn btn-outline-light btn-lg">
+                Sign In
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

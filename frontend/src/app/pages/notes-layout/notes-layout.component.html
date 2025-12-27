@@ -1,0 +1,5 @@
+<div class="container">
+  <app-note-form (noteCreated)="onNoteAdded()"></app-note-form>
+  <hr class="my-4">
+  <app-note-list #noteList (editNoteClicked)="onEditNote($event)"></app-note-list>
+</div>
